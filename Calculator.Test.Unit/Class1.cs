@@ -107,5 +107,15 @@ namespace Calculator.Test.Unit
 
             Assert.That(uut.Power(3.0,-3.0),Is.EqualTo(0.11).Within(0.1));
         }
+
+        [TestCase(2, 3, ExpectedResult = 5, TestName = "2+3=5")]
+        [TestCase(34,72,ExpectedResult = 106, TestName = "34+72=86")]
+        [TestCase(92, 150, ExpectedResult = 242, TestName = "92+150=231")]
+        public double Add_AddIntegerandInteger_Correct(int a, int b)
+        {
+            var uut = new Calculator();
+
+            return uut.Add(a, b); 
+        }
     }
 }

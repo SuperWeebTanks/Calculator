@@ -13,7 +13,7 @@ namespace Calculator
             var uut = new Calculator();
 
             //Add
-            //Console.WriteLine("Add({0}, {1}) = {2}", 2.0, 4.0, uut.Add(2.0,4.0));
+            Console.WriteLine("Add({0}, {1}) = {2}", 2.0, 4.0, uut.Add(2.0,4.0));
             Console.WriteLine("Add({0}, {1}) = {2}", 0.0, -3.0, uut.Add(0.0,-3.0));
             Console.WriteLine("Add({0}, {1}) = {2}", -5.0, -7.0, uut.Add(-5.0, -7.0));
 

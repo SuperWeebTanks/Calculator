@@ -112,6 +112,7 @@ namespace Calculator.Test.Unit
         [TestCase(34,72,ExpectedResult = 106, TestName = "34+72=86")]
         [TestCase(92, 150, ExpectedResult = 242, TestName = "92+150=231")]
         [TestCase(20, 30, ExpectedResult = 50, TestName = "20+30=50")]
+        [TestCase(20,35,ExpectedResult = 55, TestName = "20 + 35 = 55")]
         public double Add_AddIntegerandInteger_Correct(int a, int b)
         {
             var uut = new Calculator();

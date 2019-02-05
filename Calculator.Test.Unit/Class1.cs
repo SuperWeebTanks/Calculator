@@ -67,38 +67,16 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Multiply(2.0, 4.0), Is.EqualTo(8.0));
         }
 
-        [Test]
-        public void Multiply_Multiply0AndMin3Returns0()
+        [TestCase(0,-3, ExpectedResult = 0, TestName = "0*(-3) = 0")]
+        [TestCase(5,7, ExpectedResult = 35, TestName = "5*7 = 35")]
+        public double Multiply_MultiplyIntegerandInteger_Correct(int a, int b)
         {
             var uut = new Calculator();
 
-            Assert.That(uut.Multiply(0.0,-3.0),Is.EqualTo(0.0));
-        }
-
-        [Test]
-        public void Multiply_MultiplyMin5AndMin7Returns35()
-        {
-            var uut = new Calculator();
-
-            Assert.That(uut.Multiply(-5.0, -7.0), Is.EqualTo(35.0));
+            return uut.Multiply(a, b);
         }
 
 
-        [Test]
-        public void Power_Power2And4Returns16()
-        {
-            var uut = new Calculator();
-
-            Assert.That(uut.Power(2.0,4.0),Is.EqualTo(16.0));
-        }
-
-        [Test]
-        public void Power_Power10And0Returns1()
-        {
-            var uut = new Calculator();
-
-            Assert.That(uut.Power(10.0,0.0),Is.EqualTo(1));
-        }
 
         [Test]
         public void Power_Power3AndMin3Returns0point1()
@@ -106,6 +84,16 @@ namespace Calculator.Test.Unit
             var uut = new Calculator();
 
             Assert.That(uut.Power(3.0,-3.0),Is.EqualTo(0.11).Within(0.1));
+        }
+
+        //[TestCase(3,-3, ExpectedResult = , TestName = "3^(-3)=0.037")]
+        [TestCase(2,4, ExpectedResult = 16, TestName = "2^4=16")]
+        [TestCase(10,0, ExpectedResult = 1, TestName = "10^0=1")]
+        public double Power_PowerIntegerandInteger_Correct(int a, int b)
+        {
+            var uut = new Calculator();
+
+            return uut.Power(a, b);
         }
 
         [TestCase(2, 3, ExpectedResult = 5, TestName = "2+3=5")]

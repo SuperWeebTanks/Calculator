@@ -11,31 +11,31 @@ namespace Calculator
 {
     public class Calculator
     {
-        public double Add(double a, double b)
+        public virtual double Add(double a, double b)
         {
             Accumulator = a + b;
             return a + b;
         }
 
-        public double Subtract(double a, double b)
+        public virtual double Subtract(double a, double b)
         {
             Accumulator = a - b;
             return a - b;
         }
 
-        public double Multiply(double a, double b)
+        public virtual double Multiply(double a, double b)
         {
             Accumulator = a * b; 
             return a * b;
         }
 
-        public double Power(double x, double exp)
+        public virtual double Power(double x, double exp)
         {
             Accumulator = Math.Pow(x, exp); 
             return Math.Pow(x, exp);
         }
 
-        public double Divide(double dividend, double divisor)
+        public virtual double Divide(double dividend, double divisor)
         {
             if (divisor == 0)
             {
@@ -54,5 +54,33 @@ namespace Calculator
             Accumulator = 0; 
         }
 
+    }
+
+    public class OverloadedCalculator : Calculator
+    {
+        public virtual double Add(double addend)
+        {
+            return base.Add(addend, Accumulator); 
+        }
+
+        public virtual double Subtract(double subtract)
+        {
+            return base.Subtract(subtract, Accumulator); 
+        }
+
+        public virtual double Multiply(double multiplier)
+        {
+            return base.Multiply(multiplier, Accumulator); 
+        }
+
+        public virtual double Divide(double divisor)
+        {
+            return base.Divide(Accumulator, divisor); 
+        }
+
+        public virtual double Power(double exponent)
+        {
+            return base.Power(Accumulator, exponent); 
+        }
     }
 }

@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Calculator.Test.Unit
 {
     [TestFixture]
-    public class CalculatorUnitTest
+    public partial class CalculatorUnitTest
     {
         [Test]
         public void Add_Add2And4Returns6()
@@ -108,5 +108,11 @@ namespace Calculator.Test.Unit
 
             return uut.Add(a, b); 
         }
+
+    }
+
+    public partial class CalculatorUnitTest
+    {
+       
     }
 }

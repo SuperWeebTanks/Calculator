@@ -12,7 +12,7 @@ namespace Calculator.Test.Unit
     public partial class CalculatorUnitTest
     {
         [TestCase(2,4, ExpectedResult = -2, TestName = "2-4 = -2")]
-        [TestCase(0,-3, ExpectedResult = 3, TestName = "0-3 = 3")]
+        [TestCase(0,-3, ExpectedResult = 3, TestName = "0-(-3) = 3")]
         [TestCase(-5,-7, ExpectedResult = 2, TestName = "-5-(-7) = 2")]
         public double Subtract_SubtractIntegerandInteger_Correct(int a, int b)
         {
@@ -36,9 +36,10 @@ namespace Calculator.Test.Unit
         {
             var uut = new Calculator();
 
-            Assert.That(uut.Power(3.0,-3.0),Is.EqualTo(0.037).Within(0.1));
+            Assert.That(uut.Power(3.0,-3.0),Is.EqualTo(0.037).Within(0.01));
         }
-
+        
+        [TestCase(100,1,ExpectedResult = 100, TestName = "100^1=100")]
         [TestCase(2,4, ExpectedResult = 16, TestName = "2^4=16")]
         [TestCase(10,0, ExpectedResult = 1, TestName = "10^0=1")]
         public double Power_PowerIntegerandInteger_Correct(int a, int b)
@@ -83,11 +84,17 @@ namespace Calculator.Test.Unit
             Assert.That(() => uut.Divide(0), Throws.TypeOf<DivideByZeroException>());
         }
 
-        [TestCase(32, ExpectedResult = 0, TestName = "32 Divided by 32 = 1, Accumulator = 0")]
-        [TestCase(44, ExpectedResult = )]
+        [TestCase(32, ExpectedResult = 0, TestName = "32 Divided by 0 = 0, Accumulator = 0")]
+        [TestCase(44, ExpectedResult = 0, TestName = "44 diveded by 0 = 0, Accumulator = 0")]
         public double Divide_DivideWholeNumbers_ExpectWholeNumber(double a)
         {
             return uut.Divide(a); 
+        }
+
+        [Test]
+        public void Divide_Divide32point5with22point32_Result1point456()
+        {
+            Assert.That(uut.Divide(35.5, 22.32), Is.EqualTo(1.59).Within(0.1));
         }
         
     }

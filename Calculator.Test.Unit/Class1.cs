@@ -109,10 +109,14 @@ namespace Calculator.Test.Unit
             return uut.Add(a, b); 
         }
 
+        [TestCase(10)]
+        public void AddOverload_Correct(int a)
+        {
+
+            Assert.That();
+        }
     }
 
-    public partial class CalculatorUnitTest
-    {
-       
-    }
+    
+
 }

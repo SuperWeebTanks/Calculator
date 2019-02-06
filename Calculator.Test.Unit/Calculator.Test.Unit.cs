@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Execution;
 
 namespace Calculator.Test.Unit
@@ -97,25 +99,25 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Divide(35.5, 22.32), Is.EqualTo(1.59).Within(0.1));
         }
 
-        [TestCase(10)]
-        [TestCase(0)]
-        [TestCase(5.5)]
+        [TestCase(10,TestName = "Accumulator+10")]
+        [TestCase(0, TestName = "Accumulator+0")]
+        [TestCase(5.5, TestName = "Accumulator+5.5")]
         public void AddOverload_correct(double a)
         {
             Assert.That(uut.Add(a),Is.EqualTo(uut.Accumulator+a));
         }
 
-        [TestCase(5.5)]
-        [TestCase(2)]
-        [TestCase(0)]
+        [TestCase(5.5,TestName="Accumulator*5.5")]
+        [TestCase(2,TestName="Accumulator*2")]
+        [TestCase(0,TestName="Accumulator*0")]
         public void MultiplyOverload_correct(double a)
         {
             Assert.That(uut.Multiply(a),Is.EqualTo(uut.Accumulator*a));
         }
 
-        [TestCase(5.5)]
-        [TestCase(5)]
-        [TestCase(0)]
+        [TestCase(5.5,TestName="Accumulator-5.5")]
+        [TestCase(5, TestName = "Accumulator-5")]
+        [TestCase(0, TestName = "Accumulator-0")]
         public void SubtractOverload_Correct(double a)
         {
             Assert.That(uut.Subtract(a),Is.EqualTo(uut.Accumulator-a));

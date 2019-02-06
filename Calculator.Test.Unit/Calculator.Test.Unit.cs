@@ -79,7 +79,7 @@ namespace Calculator.Test.Unit
         }
 
         [Test]
-        public void Divide_DivedeByZero_CatchDivideByZeroException()
+        public void DivideOverloaded_DivedeByZero_CatchDivideByZeroException()
         {
             uut.Clear();
             Assert.That(() => uut.Divide(0), Throws.TypeOf<DivideByZeroException>());
@@ -94,14 +94,14 @@ namespace Calculator.Test.Unit
         }
 
         [Test]
-        public void Divide_Divide32point5with22point32_Result1point456()
+        public void DivideOverloaded_Divide32point5with22point32_Result1point456()
         {
             uut.Add(35.5, 0); //Set accumulator = 0
             Assert.That(uut.Divide(22.32), Is.EqualTo(1.59).Within(0.1));
         }
 
         [Test]
-        public void Power_Exponent4pint4andAccumulator2point1_Result()
+        public void PowerOverloaded_Exponent4pint4andAccumulator2point1_Result()
         {
             uut.Add(2.1, 0); 
             Assert.That(uut.Power(4.4), Is.EqualTo(26.167).Within(0.1));
@@ -116,7 +116,7 @@ namespace Calculator.Test.Unit
         }
 
         [Test]
-        public void Power_0ToThePowerOf0_Result0()
+        public void PowerOverloaded_0ToThePowerOf0_Result0()
         {
             uut.Clear();
             Assert.That(uut.Power(0), Is.EqualTo(1).Within(0.0001));

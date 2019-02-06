@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Execution;
 
 namespace Calculator.Test.Unit
 {
@@ -66,8 +67,35 @@ namespace Calculator.Test.Unit
 
     }
 
-    public partial class CalculatorUnitTest
+    [TestFixture]
+    public partial class CalculatorUnitTest //Overloaded
     {
-       
+        private Calculator uut; 
+        [SetUp]
+        public void Setup()
+        {
+            uut = new Calculator();
+            uut.Clear(); //Clear accomulator 
+        }
+
+        [Test]
+        public void Divide_DivedeByZero_CatchDivideByZeroException()
+        {
+            Assert.That(() => uut.Divide(0), Throws.TypeOf<DivideByZeroException>());
+        }
+
+        [TestCase(32, ExpectedResult = 0, TestName = "32 Divided by 0 = 0, Accumulator = 0")]
+        [TestCase(44, ExpectedResult = 0, TestName = "44 diveded by 0 = 0, Accumulator = 0")]
+        public double Divide_DivideWholeNumbers_ExpectWholeNumber(double a)
+        {
+            return uut.Divide(a); 
+        }
+
+        [Test]
+        public void Divide_Divide32point5with22point32_Result1point456()
+        {
+            Assert.That(uut.Divide(35.5, 22,32), Is.EqualTo(1.456).Within(0.1));
+        }
+        
     }
 }

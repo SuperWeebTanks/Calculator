@@ -31,7 +31,7 @@ namespace Calculator
 
         public double Subtract(double subtracter)
         {
-            return subtracter - Accumulator; 
+            return Accumulator-subtracter; 
         }
 
         public double Multiply(double a, double b)

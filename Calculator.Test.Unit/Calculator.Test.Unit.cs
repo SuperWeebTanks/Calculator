@@ -81,6 +81,7 @@ namespace Calculator.Test.Unit
         [Test]
         public void Divide_DivedeByZero_CatchDivideByZeroException()
         {
+            uut.Clear();
             Assert.That(() => uut.Divide(0), Throws.TypeOf<DivideByZeroException>());
         }
 
@@ -88,6 +89,7 @@ namespace Calculator.Test.Unit
         [TestCase(44, ExpectedResult = 0, TestName = "44 diveded by 0 = 0, Accumulator = 0")]
         public double Divide_DivideWholeNumbers_ExpectWholeNumber(double a)
         {
+            uut.Clear();
             return uut.Divide(a); 
         }
 
@@ -111,6 +113,13 @@ namespace Calculator.Test.Unit
         {
             uut.Add(2, 0);
             return uut.Power(a); 
+        }
+
+        [Test]
+        public void Power_0ToThePowerOf0_Result0()
+        {
+            uut.Clear();
+            Assert.That(uut.Power(0), Is.EqualTo(1).Within(0.0001));
         }
         
     }

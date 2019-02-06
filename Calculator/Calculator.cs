@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -17,10 +18,20 @@ namespace Calculator
             return a + b;
         }
 
+        public double Add(double addend)
+        {
+            return addend + Accumulator; 
+        }
+
         public double Subtract(double a, double b)
         {
             Accumulator = a - b;
             return a - b;
+        }
+
+        public double Subtract(double subtracter)
+        {
+            return subtracter - Accumulator; 
         }
 
         public double Multiply(double a, double b)
@@ -29,11 +40,22 @@ namespace Calculator
             return a * b;
         }
 
+        public double Multiply(double multipler)
+        {
+            return multipler * Accumulator; 
+        }
+
         public double Power(double x, double exp)
         {
             Accumulator = Math.Pow(x, exp); 
             return Math.Pow(x, exp);
         }
+
+        public double Power(double exponent)
+        {
+            return Math.Pow(Accumulator, exponent); 
+        }
+
 
         public double Divide(double dividend, double divisor)
         {
@@ -47,7 +69,12 @@ namespace Calculator
             return value;
         }
 
-        public double Accumulator { get; private set; }
+        public double Divide(double divisor)
+        {
+            return Divide(Accumulator, divisor); 
+        }
+
+        public double Accumulator{ get; private set; }
 
         public void Clear()
         {
@@ -55,4 +82,5 @@ namespace Calculator
         }
 
     }
+
 }

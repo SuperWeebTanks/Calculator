@@ -93,7 +93,7 @@ namespace Calculator.Test.Unit
         [Test]
         public void Divide_Divide32point5with22point32_Result1point456()
         {
-            Assert.That(uut.Divide(35.5, 22,32), Is.EqualTo(1.456).Within(0.1));
+            Assert.That(uut.Divide(35.5, 22.32), Is.EqualTo(1.456).Within(0.1));
         }
         
     }

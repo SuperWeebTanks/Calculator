@@ -94,7 +94,23 @@ namespace Calculator.Test.Unit
         [Test]
         public void Divide_Divide32point5with22point32_Result1point456()
         {
-            Assert.That(uut.Divide(35.5, 22.32), Is.EqualTo(1.59).Within(0.1));
+            uut.Add(35.5, 0); //Set accumulator = 0
+            Assert.That(uut.Divide(22.32), Is.EqualTo(1.59).Within(0.1));
+        }
+
+        [Test]
+        public void Power_Exponent4pint4andAccumulator2point1_Result()
+        {
+            uut.Add(2.1, 0); 
+            Assert.That(uut.Power(4.4), Is.EqualTo(26.167).Within(0.1));
+        }
+
+        [TestCase(2, ExpectedResult = 4, TestName = "2 To the power of 2 = 4, Accumulator = 2")]
+        [TestCase(8, ExpectedResult = 256, TestName = "2 To the power of 8 = 256, Accumulator = 2")]
+        public double Power_WholeNumberToThePowerOfWholeNumber_ExpectWholeNumber(double a)
+        {
+            uut.Add(2, 0);
+            return uut.Power(a); 
         }
         
     }

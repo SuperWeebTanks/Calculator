@@ -102,13 +102,15 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Divide(22.32), Is.EqualTo(1.59).Within(0.1));
         }
 
-        [Test]
-        public void PowerOverloaded_Exponent4pint4andAccumulator2point1_Result()
+        [TestCase(2.1,4.749)]
+        [TestCase(-2.1,0.210)]
+        public void PowerOverloaded_Exponent4pint4andAccumulator2point1_Result(double a,double b)
         {
             uut.Add(2.1, 0); 
-            Assert.That(uut.Power(4.4), Is.EqualTo(26.167).Within(0.1));
+            Assert.That(uut.Power(a), Is.EqualTo(b).Within(0.1));
         }
 
+        
         [TestCase(2, ExpectedResult = 4, TestName = "2 To the power of 2 = 4, Accumulator = 2")]
         [TestCase(8, ExpectedResult = 256, TestName = "2 To the power of 8 = 256, Accumulator = 2")]
         public double Power_WholeNumberToThePowerOfWholeNumber_ExpectWholeNumber(double a)
@@ -116,6 +118,8 @@ namespace Calculator.Test.Unit
             uut.Add(2, 0);
             return uut.Power(a); 
         }
+
+       
 
         [Test]
         public void PowerOverloaded_0ToThePowerOf0_Result0()

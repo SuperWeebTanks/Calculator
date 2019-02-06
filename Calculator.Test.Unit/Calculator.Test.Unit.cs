@@ -81,8 +81,9 @@ namespace Calculator.Test.Unit
         }
 
         [Test]
-        public void Divide_DivedeByZero_CatchDivideByZeroException()
+        public void DivideOverloaded_DivedeByZero_CatchDivideByZeroException()
         {
+            uut.Clear();
             Assert.That(() => uut.Divide(0), Throws.TypeOf<DivideByZeroException>());
         }
 
@@ -90,13 +91,37 @@ namespace Calculator.Test.Unit
         [TestCase(44, ExpectedResult = 0, TestName = "44 diveded by 0 = 0, Accumulator = 0")]
         public double Divide_DivideWholeNumbers_ExpectWholeNumber(double a)
         {
+            uut.Clear();
             return uut.Divide(a); 
         }
 
         [Test]
-        public void Divide_Divide32point5with22point32_Result1point456()
+        public void DivideOverloaded_Divide32point5with22point32_Result1point456()
         {
-            Assert.That(uut.Divide(35.5, 22.32), Is.EqualTo(1.59).Within(0.1));
+            uut.Add(35.5, 0); //Set accumulator = 0
+            Assert.That(uut.Divide(22.32), Is.EqualTo(1.59).Within(0.1));
+        }
+
+        [Test]
+        public void PowerOverloaded_Exponent4pint4andAccumulator2point1_Result()
+        {
+            uut.Add(2.1, 0); 
+            Assert.That(uut.Power(4.4), Is.EqualTo(26.167).Within(0.1));
+        }
+
+        [TestCase(2, ExpectedResult = 4, TestName = "2 To the power of 2 = 4, Accumulator = 2")]
+        [TestCase(8, ExpectedResult = 256, TestName = "2 To the power of 8 = 256, Accumulator = 2")]
+        public double Power_WholeNumberToThePowerOfWholeNumber_ExpectWholeNumber(double a)
+        {
+            uut.Add(2, 0);
+            return uut.Power(a); 
+        }
+
+        [Test]
+        public void PowerOverloaded_0ToThePowerOf0_Result0()
+        {
+            uut.Clear();
+            Assert.That(uut.Power(0), Is.EqualTo(1).Within(0.0001));
         }
 
         [TestCase(10,TestName = "Accumulator+10")]

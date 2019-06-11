@@ -81,6 +81,8 @@ namespace Calculator
             Accumulator = 0; 
         }
 
+        public void foo() { }
+
     }
 
 }
